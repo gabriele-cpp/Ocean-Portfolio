@@ -166,10 +166,10 @@ export function ContactSection() {
               <div className="text-center py-12">
                 <div className="text-6xl mb-4 animate-float">🎉</div>
                 <h3 className="font-display text-2xl font-bold text-ocean-sand mb-2">
-                  Message Success!
+                  Message Sent!
                 </h3>
                 <p className="text-ocean-mist">
-                  Terima kasih! Saya akan membalas dalam 24 jam.
+                  Thank you! I will get back to you within 24 hours.
                 </p>
               </div>
             ) : (
