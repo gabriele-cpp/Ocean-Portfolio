@@ -71,9 +71,9 @@ export function SkillsSection() {
     return (
         <SectionWrapper id="skills">
             <SectionHeading
-                eyebrow="// keahlian"
-                title="Senjata di Arsenal Saya"
-                subtitle="Teknologi dan tools yang saya gunakan setiap hari untuk membangun produk digital berkualitas tinggi."
+                eyebrow="// skills"
+                title="My Weapons"
+                subtitle="Technologies and tools I use daily to build high-quality digital products."
             />
 
             <div ref={sectionRef}>
