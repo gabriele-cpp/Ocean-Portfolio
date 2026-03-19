@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Gabriel Emil" }],
   openGraph: {
     title: "Gabriel Emil - Frontend Developer",
-    description: "Portfolio interaktif dengan tema lautan",
+    description: "Im looking for job pls",
     type: "website",
   },
 };
