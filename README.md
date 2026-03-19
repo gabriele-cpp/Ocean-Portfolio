@@ -1,141 +1,155 @@
-# 🌊 Ocean Portfolio — Next.js + TypeScript
+# 🌊 Ocean Portfolio
 
-Portfolio interaktif bertema lautan yang dibangun dengan **Next.js 14**, **TypeScript**, dan **Tailwind CSS**.
+A personal portfolio website built with **Next.js 14**, **TypeScript**, and **Tailwind CSS**, featuring an ocean-depth theme with smooth animations and interactive effects.
 
-## ✨ Fitur
+## ✨ Features
 
-- 🎨 **Tema Lautan** — palet warna laut dalam dari abyss hingga bioluminescence
-- 🫧 **Bubble Particles** — partikel gelembung animasi yang melayang di background
-- ⌨️ **Typing Animation** — teks bergerak yang mengetik dan menghapus sendiri
-- 📜 **Parallax Scroll** — efek kedalaman saat scrolling di Hero section
-- 🌊 **Animated Waves** — gelombang SVG yang bergerak di Hero section
-- 🖱️ **Custom Cursor** — kursor bioluminescent yang mengikuti mouse
-- 🃏 **Glassmorphism Cards** — kartu transparan dengan efek blur
-- 📱 **Fully Responsive** — tampilan optimal di semua ukuran layar
-- ♿ **Accessible** — struktur HTML semantik dan keyboard navigable
-- 🌟 **Smooth Transitions** — animasi masuk saat section terlihat (IntersectionObserver)
+- 🎨 **Ocean Theme** — deep-sea color palette from abyss to bioluminescent teal
+- 🫧 **Bubble Particles** — floating animated bubbles across the background
+- ⌨️ **Typing Animation** — auto-typing and deleting text effect in the Hero section
+- 🌊 **Animated Waves** — multi-layer SVG waves in the Hero section
+- 📜 **Parallax Scroll** — depth effect on background orbs while scrolling
+- 🖱️ **Custom Cursor** — bioluminescent cursor with a smooth trailing ring
+- 🃏 **Glassmorphism Cards** — frosted glass cards with hover glow effects
+- 📊 **Animated Skill Bars** — shimmer-effect progress bars with category tabs
+- 🗂️ **Zigzag Timeline** — alternating layout for the experience section
+- 📬 **Contact Form** — fully functional form powered by Resend
+- 📱 **Fully Responsive** — mobile-friendly with hamburger menu
+- 🔼 **Smart Navbar** — hidden at the top, slides in after scrolling down
 
-## 📁 Struktur Project
+## 📁 Project Structure
 
 ```
 ocean-portfolio/
 ├── app/
-│   ├── globals.css        # Global styles + ocean theme variables
-│   ├── layout.tsx         # Root layout dengan Navbar, Cursor, Bubbles
-│   └── page.tsx           # Halaman utama (assembles all sections)
+│   ├── api/contact/route.ts   # Contact form API (Resend)
+│   ├── globals.css            # Global styles + ocean CSS variables
+│   ├── layout.tsx             # Root layout
+│   └── page.tsx               # Main page
 ├── components/
 │   ├── sections/
-│   │   ├── HeroSection.tsx       # Hero dengan typing + parallax + waves
-│   │   ├── AboutSection.tsx      # About dengan stats cards
-│   │   ├── SkillsSection.tsx     # Skills dengan animated bars + tabs
-│   │   ├── ProjectsSection.tsx   # Projects grid dengan show more
-│   │   ├── ExperienceSection.tsx # Timeline karir zigzag
-│   │   └── ContactSection.tsx    # Contact form + social links
+│   │   ├── HeroSection.tsx        # Hero with typing + parallax + waves
+│   │   ├── AboutSection.tsx       # About me with fun facts + stats
+│   │   ├── SkillsSection.tsx      # Skills with animated bars + tabs
+│   │   ├── ProjectsSection.tsx    # Projects grid (empty state ready)
+│   │   ├── ExperienceSection.tsx  # Zigzag timeline
+│   │   └── ContactSection.tsx     # Contact form + social links
 │   └── ui/
-│       ├── Navbar.tsx            # Sticky navbar dengan active state
-│       ├── Footer.tsx            # Footer dengan wave decoration
-│       ├── CustomCursor.tsx      # Custom bioluminescent cursor
-│       ├── BubbleParticles.tsx   # Floating bubble particles
-│       ├── SectionWrapper.tsx    # Wrapper dengan reveal animation
-│       └── SectionHeading.tsx    # Consistent section titles
+│       ├── Navbar.tsx             # Sticky navbar, hidden at top
+│       ├── Footer.tsx             # Footer with wave decoration
+│       ├── CustomCursor.tsx       # Custom bioluminescent cursor
+│       ├── BubbleParticles.tsx    # Floating bubble particles
+│       ├── SectionWrapper.tsx     # Scroll reveal wrapper
+│       └── SectionHeading.tsx     # Consistent section titles
 ├── lib/
-│   ├── data.ts            # Semua konten portfolio (edit ini!)
-│   └── utils.ts           # Utility: cn() untuk className merging
+│   ├── data.ts                # All portfolio content — edit this!
+│   └── utils.ts               # cn() utility for className merging
 ├── types/
-│   └── index.ts           # TypeScript interfaces
-├── tailwind.config.ts     # Custom ocean color palette + animations
-└── package.json
+│   └── index.ts               # TypeScript interfaces
+└── tailwind.config.ts         # Custom ocean color palette + animations
 ```
 
-## 🚀 Cara Menjalankan
+## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js 18+
-- npm / yarn / pnpm
+- npm
 
 ### Installation
 
 ```bash
-# 1. Masuk ke folder project
-cd ocean-portfolio
-
-# 2. Install dependencies
+# 1. Install dependencies
 npm install
 
-# 3. Jalankan development server
+# 2. Create environment file and fill in your RESEND_API_KEY
+# Create a file named .env.local with:
+# RESEND_API_KEY=re_xxxxxxxxxx
+
+# 3. Start development server
 npm run dev
 
-# 4. Buka browser
+# 4. Open in browser
 # http://localhost:3000
 ```
 
-### Build untuk Production
+## 🎨 Customization
 
-```bash
-npm run build
-npm start
-```
+### Content
+Edit **`lib/data.ts`** to update:
+- Name, bio, location → `personalInfo`
+- Projects → `projects[]`
+- Skills → `skills[]`
+- Experience / education → `experiences[]`
 
-## 🎨 Kustomisasi
+### Colors
+Edit **`tailwind.config.ts`** under `colors.ocean`:
 
-### Ganti Konten
-Edit file **`lib/data.ts`** untuk mengubah:
-- Nama, bio, lokasi → `personalInfo`
-- Daftar proyek → `projects[]`
-- Keahlian → `skills[]`
-- Pengalaman kerja → `experiences[]`
+| Name    | Hex       | Usage                    |
+|---------|-----------|--------------------------|
+| abyss   | `#020c1b` | Darkest background       |
+| deep    | `#031a36` | Section backgrounds      |
+| mid     | `#0a3d6b` | Card / glass backgrounds |
+| surface | `#0e6ba8` | Medium elements          |
+| shallow | `#0496ff` | Bright accents           |
+| foam    | `#56cfe1` | Secondary text           |
+| mist    | `#a8dadc` | Muted text               |
+| sand    | `#f1faee` | Primary text             |
+| coral   | `#ff6b6b` | Red-orange accent        |
+| biolum  | `#00f5d4` | Main glow accent         |
+| gold    | `#ffd166` | Yellow accent            |
 
-### Ganti Warna
-Edit **`tailwind.config.ts`** bagian `colors.ocean`:
+### Adding a Project
+When you have a project to show, add an object to the `projects` array in `lib/data.ts`:
 
 ```ts
-ocean: {
-  abyss:   "#020c1b",   // Latar paling gelap
-  biolum:  "#00f5d4",   // Aksen utama (teal bioluminescent)
-  coral:   "#ff6b6b",   // Aksen sekunder
-  // ... dst
+{
+  id: 1,
+  title: "My Project",
+  description: "A short description of what it does.",
+  tags: ["Next.js", "TypeScript"],
+  image: "/project1.jpg",
+  link: "https://example.com",       // optional
+  github: "https://github.com/...",  // optional
+  featured: true,
 }
 ```
 
-### Tambah Section Baru
-1. Buat file di `components/sections/NamaSection.tsx`
-2. Gunakan `<SectionWrapper id="nama">` sebagai wrapper
-3. Import dan tambahkan di `app/page.tsx`
-4. Tambahkan link di `components/ui/Navbar.tsx`
+The Projects section will automatically display it — no other code changes needed.
 
-## 🌊 Palet Warna Ocean
+## 📬 Contact Form Setup (Resend)
 
-| Nama     | Hex       | Penggunaan                        |
-|----------|-----------|-----------------------------------|
-| abyss    | `#020c1b` | Background paling gelap           |
-| deep     | `#031a36` | Background section gelap          |
-| mid      | `#0a3d6b` | Background card / glass           |
-| surface  | `#0e6ba8` | Elemen medium                     |
-| shallow  | `#0496ff` | Warna cerah                       |
-| foam     | `#56cfe1` | Teks secondary                    |
-| mist     | `#a8dadc` | Teks muted                        |
-| sand     | `#f1faee` | Teks utama                        |
-| coral    | `#ff6b6b` | Aksen merah-oranye                |
-| kelp     | `#2ec4b6` | Aksen hijau                       |
-| biolum   | `#00f5d4` | Aksen utama (glow bioluminescent) |
-| gold     | `#ffd166` | Aksen kuning                      |
+1. Sign up at [resend.com](https://resend.com)
+2. Create an API key
+3. Add to `.env.local`:
+   ```
+   RESEND_API_KEY=re_xxxxxxxxxx
+   ```
+4. Update the `to` field in `app/api/contact/route.ts` with your email
+5. Add `RESEND_API_KEY` to Vercel environment variables for production
 
-## 📦 Dependencies Utama
+## 🚢 Deployment
 
-| Package              | Kegunaan                          |
-|----------------------|-----------------------------------|
-| `next` 14            | Framework React                   |
-| `typescript`         | Type safety                       |
-| `tailwindcss`        | Utility-first CSS                 |
-| `clsx`               | Conditional classNames            |
-| `tailwind-merge`     | Merge Tailwind classes safely     |
+This project is deployed on **Vercel**. Every `git push` to the main branch triggers an automatic re-deploy.
 
-> Semua animasi dibangun **native** dengan CSS + Tailwind tanpa library eksternal animasi, sehingga bundle size tetap kecil!
+```bash
+git add .
+git commit -m "your message"
+git push
+```
+
+## 📦 Main Dependencies
+
+| Package          | Purpose                         |
+|------------------|---------------------------------|
+| `next` 14        | React framework                 |
+| `typescript`     | Type safety                     |
+| `tailwindcss`    | Utility-first CSS               |
+| `resend`         | Email delivery for contact form |
+| `clsx`           | Conditional classNames          |
+| `tailwind-merge` | Safe Tailwind class merging     |
+
+> All animations are built natively with CSS + Tailwind — no heavy animation libraries, keeping the bundle size small.
 
 ## 📄 License
 
-MIT — bebas digunakan dan dikustomisasi.
-
----
-
-*Dibuat dengan 🌊 dan ☕ — Happy coding!*
+MIT — free to use and customize.
