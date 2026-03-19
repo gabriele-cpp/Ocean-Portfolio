@@ -65,10 +65,27 @@ export function ContactSection() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormState("loading");
-    // Simulate async submit
-    await new Promise((r) => setTimeout(r, 1500));
-    setFormState("success");
-    setTimeout(() => setFormState("idle"), 4000);
+
+    const formData = new FormData(e.currentTarget);
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name:    formData.get("name"),
+        email:   formData.get("email"),
+        subject: formData.get("subject"),
+        message: formData.get("message"),
+      }),
+    });
+
+    if (res.ok) {
+      setFormState("success");
+      setTimeout(() => setFormState("idle"), 4000);
+    } else {
+      setFormState("error");
+      setTimeout(() => setFormState("idle"), 3000);
+    }
   };
 
   return (
