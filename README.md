@@ -1,18 +1,19 @@
-# 🌊 Ocean Portfolio
+# 🌊 Ocean Portfolio — Gabriel Emil
 
-A personal portfolio website built with **Next.js 14**, **TypeScript**, and **Tailwind CSS**, featuring an ocean-depth theme with smooth animations and interactive effects.
+A personal portfolio website built with **Next.js 14**, **TypeScript**, and **Tailwind CSS**, featuring a deep-sea ocean theme with dynamic sky, smooth animations, and real-time integrations.
 
 ## ✨ Features
 
 - 🎨 **Ocean Theme** — deep-sea color palette from abyss to bioluminescent teal
+- ☀️🌙 **Dynamic Sky** — sun or moon that moves across the sky based on the real current time, with dawn/dusk color transitions
 - 🫧 **Bubble Particles** — floating animated bubbles across the background
-- ⌨️ **Typing Animation** — auto-typing and deleting text effect in the Hero section
-- 🌊 **Animated Waves** — multi-layer SVG waves in the Hero section
-- 📜 **Parallax Scroll** — depth effect on background orbs while scrolling
+- ⌨️ **Typing Animation** — auto-typing and deleting taglines in the Hero section
+- 🌊 **Animated Waves** — 4-layer SVG waves at the bottom of the Hero
 - 🖱️ **Custom Cursor** — bioluminescent cursor with a smooth trailing ring
 - 🃏 **Glassmorphism Cards** — frosted glass cards with hover glow effects
 - 📊 **Animated Skill Bars** — shimmer-effect progress bars with category tabs
 - 🗂️ **Zigzag Timeline** — alternating layout for the experience section
+- 🎵 **Spotify Now Playing** — real-time widget showing current or last played track
 - 📬 **Contact Form** — fully functional form powered by Resend
 - 📱 **Fully Responsive** — mobile-friendly with hamburger menu
 - 🔼 **Smart Navbar** — hidden at the top, slides in after scrolling down
@@ -22,13 +23,15 @@ A personal portfolio website built with **Next.js 14**, **TypeScript**, and **Ta
 ```
 ocean-portfolio/
 ├── app/
-│   ├── api/contact/route.ts   # Contact form API (Resend)
+│   ├── api/
+│   │   ├── contact/route.ts   # Contact form API (Resend)
+│   │   └── spotify/route.ts   # Spotify now playing API
 │   ├── globals.css            # Global styles + ocean CSS variables
 │   ├── layout.tsx             # Root layout
 │   └── page.tsx               # Main page
 ├── components/
 │   ├── sections/
-│   │   ├── HeroSection.tsx        # Hero with typing + parallax + waves
+│   │   ├── HeroSection.tsx        # Hero with typing + dynamic sky + waves
 │   │   ├── AboutSection.tsx       # About me with fun facts + stats
 │   │   ├── SkillsSection.tsx      # Skills with animated bars + tabs
 │   │   ├── ProjectsSection.tsx    # Projects grid (empty state ready)
@@ -39,6 +42,7 @@ ocean-portfolio/
 │       ├── Footer.tsx             # Footer with wave decoration
 │       ├── CustomCursor.tsx       # Custom bioluminescent cursor
 │       ├── BubbleParticles.tsx    # Floating bubble particles
+│       ├── SpotifyWidget.tsx      # Spotify now playing widget
 │       ├── SectionWrapper.tsx     # Scroll reveal wrapper
 │       └── SectionHeading.tsx     # Consistent section titles
 ├── lib/
@@ -61,9 +65,7 @@ ocean-portfolio/
 # 1. Install dependencies
 npm install
 
-# 2. Create environment file and fill in your RESEND_API_KEY
-# Create a file named .env.local with:
-# RESEND_API_KEY=re_xxxxxxxxxx
+# 2. Create .env.local and fill in your keys (see Environment Variables below)
 
 # 3. Start development server
 npm run dev
@@ -71,6 +73,28 @@ npm run dev
 # 4. Open in browser
 # http://localhost:3000
 ```
+
+## 🔑 Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+# Resend — for contact form
+RESEND_API_KEY=re_xxxxxxxxxx
+
+# Spotify — for now playing widget
+SPOTIFY_CLIENT_ID=your_client_id
+SPOTIFY_CLIENT_SECRET=your_client_secret
+SPOTIFY_REFRESH_TOKEN=your_refresh_token
+```
+
+### Getting Spotify credentials
+1. Go to [developer.spotify.com](https://developer.spotify.com) → Create App
+2. Set redirect URI to `http://127.0.0.1:3000`
+3. Authorize and get your refresh token via the OAuth flow
+4. Add all three values to `.env.local`
+
+> Don't forget to add all environment variables to **Vercel → Settings → Environment Variables** for production.
 
 ## 🎨 Customization
 
@@ -80,6 +104,24 @@ Edit **`lib/data.ts`** to update:
 - Projects → `projects[]`
 - Skills → `skills[]`
 - Experience / education → `experiences[]`
+
+### Adding a Project
+Add an object to the `projects` array in `lib/data.ts`:
+
+```ts
+{
+  id: 1,
+  title: "My Project",
+  description: "A short description of what it does.",
+  tags: ["Next.js", "TypeScript"],
+  image: "/project1.jpg",
+  link: "https://example.com",       // optional
+  github: "https://github.com/...",  // optional
+  featured: true,
+}
+```
+
+The Projects section will automatically display it — no other changes needed.
 
 ### Colors
 Edit **`tailwind.config.ts`** under `colors.ocean`:
@@ -98,38 +140,22 @@ Edit **`tailwind.config.ts`** under `colors.ocean`:
 | biolum  | `#00f5d4` | Main glow accent         |
 | gold    | `#ffd166` | Yellow accent            |
 
-### Adding a Project
-When you have a project to show, add an object to the `projects` array in `lib/data.ts`:
+## 🌤️ Dynamic Sky System
 
-```ts
-{
-  id: 1,
-  title: "My Project",
-  description: "A short description of what it does.",
-  tags: ["Next.js", "TypeScript"],
-  image: "/project1.jpg",
-  link: "https://example.com",       // optional
-  github: "https://github.com/...",  // optional
-  featured: true,
-}
-```
+The Hero section automatically changes appearance based on the current local time:
 
-The Projects section will automatically display it — no other code changes needed.
+| Time        | Sky                        | Celestial Body         |
+|-------------|----------------------------|------------------------|
+| 05:00–07:00 | Dawn — purple/orange       | 🌅 Orange sunrise sun  |
+| 07:00–17:00 | Day — deep blue            | ☀️ Yellow sun          |
+| 17:00–19:00 | Dusk — purple/red          | 🌇 Red sunset sun      |
+| 19:00–05:00 | Night — dark navy + stars  | 🌙 Moon with bloom     |
 
-## 📬 Contact Form Setup (Resend)
-
-1. Sign up at [resend.com](https://resend.com)
-2. Create an API key
-3. Add to `.env.local`:
-   ```
-   RESEND_API_KEY=re_xxxxxxxxxx
-   ```
-4. Update the `to` field in `app/api/contact/route.ts` with your email
-5. Add `RESEND_API_KEY` to Vercel environment variables for production
+The sun/moon position also moves across the sky arc based on the exact hour.
 
 ## 🚢 Deployment
 
-This project is deployed on **Vercel**. Every `git push` to the main branch triggers an automatic re-deploy.
+Deployed on **Vercel**. Every `git push` to main triggers an automatic re-deploy.
 
 ```bash
 git add .
@@ -148,7 +174,7 @@ git push
 | `clsx`           | Conditional classNames          |
 | `tailwind-merge` | Safe Tailwind class merging     |
 
-> All animations are built natively with CSS + Tailwind — no heavy animation libraries, keeping the bundle size small.
+> All animations are built natively with CSS + Tailwind — no heavy animation libraries needed.
 
 ## 📄 License
 
