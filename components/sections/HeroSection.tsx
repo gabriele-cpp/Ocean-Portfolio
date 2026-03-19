@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { personalInfo } from "@/lib/data";
+import { SpotifyWidget } from "@/components/ui/SpotifyWidget";
 
 // Simple typing animation without external deps
 const TAGLINES = personalInfo.taglines;
@@ -208,6 +209,13 @@ export function HeroSection() {
         <p className="text-ocean-mist text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-10">
           {personalInfo.bio}
         </p>
+
+        {/* Spotify widget */}
+        <div className="flex justify-center mb-8">
+          <SpotifyWidget />
+        </div>
+
+        {/* CTA buttons */}
 
         {/* CTA buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4">
