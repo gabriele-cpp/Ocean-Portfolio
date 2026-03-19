@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Playfair Display', serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* Ocean palette */
+  --c-abyss:   #020c1b;
+  --c-deep:    #031a36;
+  --c-mid:     #0a3d6b;
+  --c-surface: #0e6ba8;
+  --c-shallow: #0496ff;
+  --c-foam:    #56cfe1;
+  --c-mist:    #a8dadc;
+  --c-sand:    #f1faee;
+  --c-coral:   #ff6b6b;
+  --c-kelp:    #2ec4b6;
+  --c-biolum:  #00f5d4;
+  --c-gold:    #ffd166;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--c-abyss);
+  color: var(--c-sand);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  cursor: none; /* custom cursor */
+}
+
+/* ─── Custom Scrollbar ─────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--c-abyss); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--c-biolum), var(--c-shallow));
+  border-radius: 99px;
+}
+
+/* ─── Selection ────────────────────────────────────── */
+::selection {
+  background: var(--c-biolum);
+  color: var(--c-abyss);
+}
+
+/* ─── Custom Cursor ────────────────────────────────── */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--c-biolum);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+  box-shadow: 0 0 12px var(--c-biolum), 0 0 24px var(--c-biolum);
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--c-foam);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s ease;
+  opacity: 0.6;
+}
+
+/* ─── Bubble particles ─────────────────────────────── */
+.bubble {
+  position: fixed;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(86, 207, 225, 0.4),
+    rgba(0, 245, 212, 0.1)
+  );
+  border: 1px solid rgba(86, 207, 225, 0.2);
+  pointer-events: none;
+  animation: bubbleRise var(--duration, 8s) ease-in var(--delay, 0s) infinite;
+  bottom: -60px;
+  backdrop-filter: blur(2px);
+}
+
+/* ─── Wave SVG animation ───────────────────────────── */
+.wave-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-container svg {
+  display: block;
+}
+
+/* ─── Glassmorphism card ───────────────────────────── */
+.glass-card {
+  background: rgba(10, 61, 107, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(86, 207, 225, 0.15);
+  border-radius: 16px;
+}
+
+.glass-card-hover {
+  transition: all 0.3s ease;
+}
+.glass-card-hover:hover {
+  background: rgba(10, 61, 107, 0.4);
+  border-color: rgba(0, 245, 212, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 245, 212, 0.1);
+}
+
+/* ─── Glow text ────────────────────────────────────── */
+.glow-text {
+  text-shadow:
+    0 0 20px rgba(0, 245, 212, 0.6),
+    0 0 40px rgba(0, 245, 212, 0.3);
+}
+
+.glow-text-coral {
+  text-shadow:
+    0 0 20px rgba(255, 107, 107, 0.6),
+    0 0 40px rgba(255, 107, 107, 0.3);
+}
+
+/* ─── Section transitions ──────────────────────────── */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+              transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+
+.section-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Gradient borders ─────────────────────────────── */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--c-biolum), var(--c-shallow), var(--c-coral));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* ─── Bioluminescence pulse ────────────────────────── */
+@keyframes biolumPulse {
+  0%, 100% { box-shadow: 0 0 5px var(--c-biolum), 0 0 20px rgba(0,245,212,0.2); }
+  50%       { box-shadow: 0 0 20px var(--c-biolum), 0 0 60px rgba(0,245,212,0.4); }
+}
+.biolum-pulse { animation: biolumPulse 3s ease-in-out infinite; }
+
+/* ─── Skill bar ────────────────────────────────────── */
+.skill-bar-fill {
+  height: 6px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--c-biolum), var(--c-shallow));
+  position: relative;
+  overflow: hidden;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1s cubic-bezier(0.16,1,0.3,1);
+}
+
+.skill-bar-fill.animate {
+  transform: scaleX(1);
+}
+
+.skill-bar-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* ─── Timeline line ────────────────────────────────── */
+.timeline-line {
+  background: linear-gradient(180deg, var(--c-biolum), var(--c-shallow), transparent);
+}
+
+/* ─── Nav link underline ───────────────────────────── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--c-biolum), var(--c-shallow));
+  border-radius: 99px;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ─── Floating fish decoration ─────────────────────── */
+.fish {
+  animation: swim 10s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* ─── Page transitions ─────────────────────────────── */
+.page-enter {
+  animation: pageEnter 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Utility ──────────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+.font-body    { font-family: var(--font-body); }
+.font-mono    { font-family: var(--font-mono); }
