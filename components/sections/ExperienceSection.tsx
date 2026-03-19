@@ -101,7 +101,7 @@ export function ExperienceSection() {
     return (
         <SectionWrapper id="experience">
             <SectionHeading
-                eyebrow="// experience"
+                eyebrow="// perjalanan"
                 title="Timeline Experience"
                 subtitle="I've just started my journey, so there's not much to show just yet."
             />
@@ -131,7 +131,7 @@ export function ExperienceSection() {
                     </div>
                 </div>
                 <p className="text-center text-ocean-mist text-sm mt-3 font-mono tracking-wider section-reveal">
-                    // coming soon...
+                    {"// and the adventure continues..."}
                 </p>
             </div>
         </SectionWrapper>
