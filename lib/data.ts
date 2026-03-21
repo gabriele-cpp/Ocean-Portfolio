@@ -24,14 +24,14 @@ export const skills: Skill[] = [
   { name: "Tailwind CSS",    level: 70, category: "frontend", icon: "🎨" },
   { name: "Framer Motion",   level: 80, category: "frontend", icon: "🎬" },
   // Backend
-  { name: "Node.js",         level: 68, category: "backend",  icon: "🟢" },
-  { name: "PostgreSQL",      level: 78, category: "backend",  icon: "🐘" },
-  { name: "Python",          level: 90, category: "backend",  icon: "🐍" },
+  { name: "Node.js",         level: 51, category: "backend",  icon: "🟢" },
+  { name: "PostgreSQL",      level: 60, category: "backend",  icon: "🐘" },
+  { name: "Python",          level: 88, category: "backend",  icon: "🐍" },
   { name: "REST / GraphQL",  level: 57, category: "backend",  icon: "🔗" },
   // Tools
   { name: "Git / GitHub",    level: 90, category: "tools",    icon: "🐙" },
-  { name: "Docker",          level: 80, category: "tools",    icon: "🐳" },
-  { name: "Vercel / AWS",    level: 80, category: "tools",    icon: "☁️" },
+  { name: "Docker",          level: 60, category: "tools",    icon: "🐳" },
+  { name: "Vercel / AWS",    level: 77, category: "tools",    icon: "☁️" },
   { name: "Figma",           level: 70, category: "design",   icon: "✏️" },
 ];
 

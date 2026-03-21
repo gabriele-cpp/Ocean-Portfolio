@@ -53,7 +53,7 @@ export function Footer() {
           style={{ borderTop: "1px solid rgba(86,207,225,0.1)" }}
         >
           <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, var(--c-biolum))" }} />
-          <span className="text-ocean-biolum text-xs font-mono">🌊 Ocean Portfolio v1.0</span>
+          <span className="text-ocean-biolum text-xs font-mono">🌊 Ocean Portfolio v1.1</span>
           <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, var(--c-biolum), transparent)" }} />
         </div>
       </div>
