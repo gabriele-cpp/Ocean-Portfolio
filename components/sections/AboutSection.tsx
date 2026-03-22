@@ -23,11 +23,11 @@ function UnderwaterPhotos() {
     const [hovered, setHovered] = useState<number | null>(null);
 
     const floatingPhotos = [
-        { src: "/photos/photo1.JPEG", size: 180, x: 5,  y: 15,  delay: 0,   duration: 5.5, rotate: -4 },
-        { src: "/photos/photo2.JPEG", size: 155, x: 52, y: 5,   delay: 1.2, duration: 6.2, rotate: 3  },
-        { src: "/photos/photo3.JPEG", size: 145, x: 25, y: 52,  delay: 0.6, duration: 5.0, rotate: -2 },
-        { src: "/photos/photo4.JPG", size: 165, x: 60, y: 48,  delay: 1.8, duration: 6.8, rotate: 5  },
-        { src: "/photos/photo5.JPG", size: 140, x: 38, y: 25,  delay: 2.4, duration: 4.8, rotate: -6 },
+        { src: "/photos/photo1.webp", size: 180, x: 5,  y: 15,  delay: 0,   duration: 5.5, rotate: -4 },
+        { src: "/photos/photo2.webp", size: 155, x: 52, y: 5,   delay: 1.2, duration: 6.2, rotate: 3  },
+        { src: "/photos/photo3.webp", size: 145, x: 25, y: 52,  delay: 0.6, duration: 5.0, rotate: -2 },
+        { src: "/photos/photo4.webp", size: 165, x: 60, y: 48,  delay: 1.8, duration: 6.8, rotate: 5  },
+        { src: "/photos/photo5.webp", size: 140, x: 38, y: 25,  delay: 2.4, duration: 4.8, rotate: -6 },
     ];
 
     return (
